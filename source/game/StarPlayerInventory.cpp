@@ -949,7 +949,7 @@ bool PlayerInventory::checkInventoryFilter(ItemPtr const& items, String const& f
   // if the bag does not exist or no preferred bag is set, this check is skipped
   auto preferredBag = items->instanceValue("preferredBag", "");
   if (preferredBag) {
-    if (config.contains(preferredBag)) {
+    if (config.get(preferredBag)) {
       if (preferredBag == filterName)
         return true;
       else
