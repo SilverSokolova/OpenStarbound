@@ -270,8 +270,9 @@ uint64_t PlayerInventory::itemsCanFit(ItemPtr const& items) const {
     ++canFit;
 
   // Then add into bags
+  auto preferredBag = items->instanceValue("preferredBag", "")
   for (auto const& pair : m_bags) {
-    if (itemAllowedInBag(items, pair.first))
+    if (itemAllowedInBag(items, pair.first) || pair.first == preferredBag)
       canFit += pair.second->itemsCanFit(items);
   }
 
