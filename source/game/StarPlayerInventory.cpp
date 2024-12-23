@@ -943,11 +943,17 @@ void PlayerInventory::cleanup() {
 }
 
 bool PlayerInventory::checkInventoryFilter(ItemPtr const& items, String const& filterName) {
-  auto preferredBag = items->instanceValue("preferredBag", "");
-  if (preferredBag == filterName)
-    return true;
-
   auto config = Root::singleton().assets()->json("/player.config:inventoryFilters");
+
+  auto preferredBag = items->instanceValue("preferredBag");
+  if (preferredBag) {
+    if config.contains(preferredBag) {
+      if (preferredBag == filterName)
+        return true;
+      else
+        return false;
+    }
+  }
 
   // filter by item type if an itemTypes filter is set
   auto itemDatabase = Root::singleton().itemDatabase();
