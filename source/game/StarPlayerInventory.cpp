@@ -270,9 +270,8 @@ uint64_t PlayerInventory::itemsCanFit(ItemPtr const& items) const {
     ++canFit;
 
   // Then add into bags
-  auto preferredBag = items->instanceValue("preferredBag", "");
   for (auto const& pair : m_bags) {
-    if (itemAllowedInBag(items, pair.first) || pair.first == preferredBag)
+    if (itemAllowedInBag(items, pair.first))
       canFit += pair.second->itemsCanFit(items);
   }
 
@@ -944,6 +943,10 @@ void PlayerInventory::cleanup() {
 }
 
 bool PlayerInventory::checkInventoryFilter(ItemPtr const& items, String const& filterName) {
+  auto preferredBag = items->instanceValue("preferredBag", "");
+  if (preferredBag == filterName)
+    return true;
+
   auto config = Root::singleton().assets()->json("/player.config:inventoryFilters");
 
   // filter by item type if an itemTypes filter is set
