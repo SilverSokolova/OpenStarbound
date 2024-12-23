@@ -190,7 +190,7 @@ public:
 private:
   typedef pair<Maybe<InventorySlot>, Maybe<InventorySlot>> CustomBarLink;
 
-  static bool checkInventoryFilter(ItemPtr const& items, String const& filterName);
+  bool checkInventoryFilter(ItemPtr const& items, String const& filterName);
 
   ItemPtr const& retrieve(InventorySlot const& slot) const;
   ItemPtr& retrieve(InventorySlot const& slot);
