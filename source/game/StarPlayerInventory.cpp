@@ -946,13 +946,11 @@ bool PlayerInventory::checkInventoryFilter(ItemPtr const& items, String const& f
   auto config = Root::singleton().assets()->json("/player.config:inventoryFilters");
 
   auto preferredBag = items->instanceValue("preferredBag");
-  if (preferredBag) {
-    if config.contains(preferredBag) {
-      if (preferredBag == filterName)
-        return true;
-      else
-        return false;
-    }
+  if (preferredBag && config.contains(preferredBag)) {
+    if (preferredBag == filterName)
+      return true;
+    else
+      return false;
   }
 
   // filter by item type if an itemTypes filter is set
