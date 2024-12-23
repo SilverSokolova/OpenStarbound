@@ -945,12 +945,16 @@ void PlayerInventory::cleanup() {
 bool PlayerInventory::checkInventoryFilter(ItemPtr const& items, String const& filterName) {
   auto config = Root::singleton().assets()->json("/player.config:inventoryFilters");
 
+  // if an item has a preferred bag, it will go into that bag regardless of any filters
+  // if the bag does not exist or no preferred bag is set, this check is skipped
   auto preferredBag = items->instanceValue("preferredBag");
-  if (preferredBag && config.contains(preferredBag)) {
-    if (preferredBag == filterName)
-      return true;
-    else
-      return false;
+  if (preferredBag) {
+    if (config.contains(preferredBag)) {
+      if (preferredBag == filterName)
+        return true;
+      else
+        return false;
+    }
   }
 
   // filter by item type if an itemTypes filter is set
