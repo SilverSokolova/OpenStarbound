@@ -947,7 +947,7 @@ bool PlayerInventory::checkInventoryFilter(ItemPtr const& items, String const& f
   // this check is skipped if no preferred bag is set or (TODO) the bag does not exist
   auto preferredBag = items->instanceValue("preferredBag");
   if (preferredBag) {
-    if (m_bags.contains(preferredBag))
+    if (m_bags.contains(preferredBag.toString()))
       return true;
     else
       return false;
