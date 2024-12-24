@@ -951,7 +951,6 @@ bool PlayerInventory::checkInventoryFilter(ItemPtr const& items, String const& f
       return true;
     else
       return false;
-    }
   }
 
   auto config = Root::singleton().assets()->json("/player.config:inventoryFilters");
