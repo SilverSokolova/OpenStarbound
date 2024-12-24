@@ -182,6 +182,8 @@ public:
   // Return summary of every manageable item name and the count of that item
   Map<String, uint64_t> itemSummary() const;
 
+  Map<String, ItemBagPtr> m_bags;
+
   // Clears away any empty items and sets them as null, and updates action bar
   // slots to maintain the rules for the action bar.  Should be called every
   // tick.
@@ -190,7 +192,7 @@ public:
 private:
   typedef pair<Maybe<InventorySlot>, Maybe<InventorySlot>> CustomBarLink;
 
-  static bool checkInventoryFilter(ItemPtr const& items, String const& filterName);
+  bool checkInventoryFilter(ItemPtr const& items, String const& filterName);
 
   ItemPtr const& retrieve(InventorySlot const& slot) const;
   ItemPtr& retrieve(InventorySlot const& slot);
@@ -202,7 +204,6 @@ private:
   void netElementsNeedStore() override;
 
   Map<EquipmentSlot, ItemPtr> m_equipment;
-  static Map<String, ItemBagPtr> m_bags;
   ItemPtr m_swapSlot;
   Maybe<InventorySlot> m_swapReturnSlot;
   ItemPtr m_trashSlot;
