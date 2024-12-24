@@ -190,7 +190,7 @@ public:
 private:
   typedef pair<Maybe<InventorySlot>, Maybe<InventorySlot>> CustomBarLink;
 
-  bool checkInventoryFilter(ItemPtr const& items, String const& filterName);
+  static bool checkInventoryFilter(ItemPtr const& items, String const& filterName);
 
   ItemPtr const& retrieve(InventorySlot const& slot) const;
   ItemPtr& retrieve(InventorySlot const& slot);
@@ -202,7 +202,7 @@ private:
   void netElementsNeedStore() override;
 
   Map<EquipmentSlot, ItemPtr> m_equipment;
-  Map<String, ItemBagPtr> m_bags;
+  static Map<String, ItemBagPtr> m_bags;
   ItemPtr m_swapSlot;
   Maybe<InventorySlot> m_swapReturnSlot;
   ItemPtr m_trashSlot;
