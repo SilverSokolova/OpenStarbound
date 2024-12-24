@@ -116,6 +116,8 @@ public:
   // true if this was successful, and the swap slot is now empty.
   bool clearSwap();
 
+  bool checkInventoryFilter(ItemPtr const& items, String const& filterName);
+
   ItemPtr swapSlotItem() const;
   void setSwapSlotItem(ItemPtr const& items);
 
@@ -189,8 +191,6 @@ public:
 
 private:
   typedef pair<Maybe<InventorySlot>, Maybe<InventorySlot>> CustomBarLink;
-
-  bool checkInventoryFilter(ItemPtr const& items, String const& filterName);
 
   ItemPtr const& retrieve(InventorySlot const& slot) const;
   ItemPtr& retrieve(InventorySlot const& slot);
