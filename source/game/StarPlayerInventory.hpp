@@ -39,7 +39,7 @@ STAR_EXCEPTION(InventoryException, StarException);
 class PlayerInventory : public NetElementSyncGroup {
 public:
   // Whether the given item is allowed to go in the given slot type
-  static bool itemAllowedInBag(ItemPtr const& item, String const& bagType);
+  bool itemAllowedInBag(ItemPtr const& item, String const& bagType);
   static bool itemAllowedAsEquipment(ItemPtr const& item, EquipmentSlot equipmentSlot);
 
   PlayerInventory();
