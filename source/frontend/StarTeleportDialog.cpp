@@ -111,7 +111,6 @@ TeleportDialog::TeleportDialog(UniverseClientPtr client,
       setupBookmarkEntry(entry, bookmark);
       if (bookmark == m_currentLocation) {
         destList->setEnabled(destList->itemPosition(entry), false);
-        entry->fetchChild<ButtonWidget>("editButton")->setEnabled(false);
       }
       m_destinations.append({WarpToWorld(bookmark.target.first, bookmark.target.second), false});
     }
